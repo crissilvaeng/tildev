@@ -8,7 +8,9 @@ import { Provider } from 'react-redux'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { configureStore } from './store/configure-store'
-import { startFetchPosts } from './actions/posts'
+import { startSetPosts } from './actions/posts'
+import * as firebase from 'firebase'
+import { signIn, signOut } from './actions/auth'
 
 const store = configureStore()
 
@@ -18,8 +20,14 @@ const jsx = (
   </Provider>
 )
 
-ReactDOM.render(<p>Loading...</p>, document.getElementById('root'))
-
-store.dispatch(startFetchPosts).then(() => {
+store.dispatch(startSetPosts()).then(() => {
   ReactDOM.render(jsx, document.getElementById('root'))
+})
+
+firebase.auth().onAuthStateChanged(user => {
+  if (user) {
+    store.dispatch(signIn(user))
+  } else {
+    store.dispatch(signOut())
+  }
 })

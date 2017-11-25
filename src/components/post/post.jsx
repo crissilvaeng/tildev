@@ -1,6 +1,6 @@
 // post.jsx
 
-import { Entry } from './../entry'
+import Entry from './../entry/entry'
 import { Modal } from 'react-bootstrap'
 import React from 'react'
 import { connect } from 'react-redux'

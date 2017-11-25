@@ -3,7 +3,6 @@
 import { Card } from './../card'
 import React from 'react'
 import { connect } from 'react-redux'
-import selectPosts from './../../selectors/posts'
 import styles from './../../style.scss'
 
 const Wall = props => (
@@ -14,7 +13,7 @@ const Wall = props => (
 
 const mapStateToProps = state => {
   return {
-    posts: selectPosts(state.posts, state.filters)
+    posts: state.posts
   }
 }
 

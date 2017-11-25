@@ -18,9 +18,12 @@ export const startAddPost = (postData = {}) => {
       title = '',
       content = '',
       tags = [],
-      datetime = 0
+      datetime = 0,
+      photoURL = '',
+      displayName = '',
+      uid = ''
     } = postData
-    const post = { title, content, tags, datetime }
+    const post = { title, content, tags, datetime, photoURL, displayName, uid }
     service.push(post)
       .then(ref => {
         dispatch(addPost({
@@ -31,26 +34,27 @@ export const startAddPost = (postData = {}) => {
   }
 }
 
-export const FETCH_POSTS = 'FETCH_POSTS'
+export const SET_POSTS = 'SET_POSTS'
 
-// FETCH_POSTS
-export const fetchPosts = posts => ({
-  type: FETCH_POSTS,
+// SET_POSTS
+export const setPosts = posts => ({
+  type: SET_POSTS,
   posts
 })
 
-export const startFetchPosts = () => {
+export const startSetPosts = () => {
   return dispatch => {
     return service.once('value').then(snapshot => {
       const posts = []
-      snapshot.forEach(childSnapshot => {
+
+      snapshot.forEach((childSnapshot) => {
         posts.push({
           id: childSnapshot.key,
           ...childSnapshot.val()
         })
       })
 
-      dispatch(fetchPosts(posts))
+      dispatch(setPosts(posts))
     })
   }
 }

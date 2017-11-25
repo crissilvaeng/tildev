@@ -1,6 +1,6 @@
 // posts.js
 
-import { ADD_POST, FETCH_POSTS } from './../actions/posts'
+import { ADD_POST, SET_POSTS } from './../actions/posts'
 
 const postsReducerDefaultState = []
 
@@ -11,7 +11,7 @@ export default (state = postsReducerDefaultState, action) => {
         ...state,
         action.post
       ]
-    case FETCH_POSTS:
+    case SET_POSTS:
       return action.posts
     default:
       return state

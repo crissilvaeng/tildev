@@ -1,7 +1,7 @@
 // topbar.jsx
 
 import Post from './../post/post'
-import { Profile } from './../profile'
+import Profile from './../profile/profile'
 import React from 'react'
 import { Search } from './../search'
 import styles from './../../style.scss'

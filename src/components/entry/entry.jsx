@@ -1,7 +1,7 @@
 // entry.jsx
 
 import { Button, ControlLabel, FormControl, FormGroup } from 'react-bootstrap'
-
+import { connect } from 'react-redux'
 import React from 'react'
 import moment from 'moment'
 
@@ -44,7 +44,10 @@ class Entry extends React.Component {
       title: this.state.title,
       content: this.state.content,
       tags: this.state.tags,
-      datetime: this.state.datetime.valueOf()
+      datetime: this.state.datetime.valueOf(),
+      photoURL: this.props.user.photoURL,
+      displayName: this.props.user.displayName,
+      uid: this.props.user.uid
     })
   }
 
@@ -85,4 +88,10 @@ class Entry extends React.Component {
   }
 }
 
-export { Entry }
+const mapStateToProps = state => {
+  return {
+    user: state.auth
+  }
+}
+
+export default connect(mapStateToProps)(Entry)
