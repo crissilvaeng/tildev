@@ -1,8 +1,8 @@
 // app.jsx
 
-import { TopBar, Wall } from './components'
-
 import React from 'react'
+import { TopBar } from './components'
+import Wall from './components/wall/wall'
 
 class App extends React.Component {
   render () {

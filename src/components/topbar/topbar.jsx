@@ -1,6 +1,6 @@
 // topbar.jsx
 
-import { Post } from './../post'
+import Post from './../post/post'
 import { Profile } from './../profile'
 import React from 'react'
 import { Search } from './../search'

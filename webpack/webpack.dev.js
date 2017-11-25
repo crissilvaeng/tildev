@@ -18,7 +18,8 @@ const config = merge(common, {
       filename: 'index.html',
       template: path.resolve(settings.template, 'index.html'),
       title: 'Today I Learned',
-      hash: true
+      hash: true,
+      favicon: path.resolve(settings.template, 'favicon.ico')
     })
   ]
 })

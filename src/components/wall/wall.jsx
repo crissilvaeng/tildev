@@ -2,20 +2,20 @@
 
 import { Card } from './../card'
 import React from 'react'
+import { connect } from 'react-redux'
+import selectPosts from './../../selectors/posts'
 import styles from './../../style.scss'
 
-class Wall extends React.Component {
-  render () {
-    return (
-      <div id='wall' className={styles.wall}>
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-      </div>
-    )
+const Wall = props => (
+  <div id='wall' className={styles.wall}>
+    { props.posts.map(post => <Card key={post.id} {...post} />) }
+  </div>
+)
+
+const mapStateToProps = state => {
+  return {
+    posts: selectPosts(state.posts, state.filters)
   }
 }
 
-export { Wall }
+export default connect(mapStateToProps)(Wall)

@@ -13,6 +13,9 @@ const settings = require('./settings')
 
 const config = merge(common, {
   plugins: [
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify('production')
+    }),
     new webpack.optimize.UglifyJsPlugin(),
     new CleanWebpackPlugin('./dist', {
       root: settings.root
@@ -25,7 +28,8 @@ const config = merge(common, {
       minify: {
         collapseWhitespace: true,
         removeComments: true
-      }
+      },
+      favicon: path.resolve(settings.template, 'favicon.ico')
     }),
     new OptimizeCssAssetsPlugin({
       assetNameRegExp: /\.css$/,
